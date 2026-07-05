@@ -2,7 +2,7 @@
 
 A comprehensive, interactive reference for securing AI systems. This guide covers foundational concepts, attack patterns, defense architectures, regulatory frameworks, and real-world incident analysis.
 
-**Live Demo:** [https://anurag7706.github.io/ai-sec/](https://anurag7706.github.io/ai-sec/)
+**Live URL:** [https://anurag7706.github.io/ai-sec/](https://anurag7706.github.io/ai-sec/)
 
 ---
 
