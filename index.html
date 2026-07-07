@@ -944,66 +944,225 @@ The Token Overflow Attack (TOMA) exploits the fixed context window size by injec
 <div class="section-divider"></div>
 
 <section id="runtime"><div class="container">
-<h2><span>Runtime Security (AARM)</span><span class="badge">Agentic AI Risk Model</span></h2>
-<p class="text-muted mb-1">The Agentic AI Risk Model (AARM) provides a structured runtime security framework for evaluating and responding to AI actions in real-time.</p>
+
+<h2>
+    <span>Runtime Security (AARM)</span>
+    <span class="badge">Autonomous Action Runtime Management</span>
+</h2>
+
+<p class="text-muted mb-1">
+Autonomous Action Runtime Management (AARM) is a runtime security framework for autonomous AI agents. It intercepts every AI action, evaluates intent, context, risk, and policy, enforces security decisions before execution, and records all actions in a tamper-evident audit trail to ensure secure, compliant, and accountable AI operations.
+</p>
 
 <h3 class="mb-1">AARM Pipeline</h3>
 <svg viewBox="0 0 900 130" style="width:100%;max-width:900px;display:block;margin:1.5rem auto">
-<rect x="5" y="30" width="120" height="70" rx="10" fill="#111827" stroke="#2563eb"/><text x="65" y="55" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Intercept</text><text x="65" y="75" text-anchor="middle" fill="#94a3b8" font-size="9">Capture Request</text>
+
+<rect x="5" y="30" width="120" height="70" rx="10" fill="#111827" stroke="#2563eb"/>
+<text x="65" y="55" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Intercept</text>
+<text x="65" y="75" text-anchor="middle" fill="#94a3b8" font-size="9">Capture Action</text>
+
 <path d="M125 65 L160 65" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="165" y="30" width="120" height="70" rx="10" fill="#111827" stroke="#0d9488"/><text x="225" y="55" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Accumulate</text><text x="225" y="75" text-anchor="middle" fill="#94a3b8" font-size="9">Gather Context</text>
+
+<rect x="165" y="30" width="120" height="70" rx="10" fill="#111827" stroke="#0d9488"/>
+<text x="225" y="55" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Evaluate</text>
+<text x="225" y="75" text-anchor="middle" fill="#94a3b8" font-size="9">Intent & Risk</text>
+
 <path d="M285 65 L320 65" stroke="#0d9488" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="325" y="30" width="120" height="70" rx="10" fill="#111827" stroke="#d97706"/><text x="385" y="55" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Evaluate</text><text x="385" y="75" text-anchor="middle" fill="#94a3b8" font-size="9">Risk Assessment</text>
+
+<rect x="325" y="30" width="120" height="70" rx="10" fill="#111827" stroke="#d97706"/>
+<text x="385" y="55" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Enforce</text>
+<text x="385" y="75" text-anchor="middle" fill="#94a3b8" font-size="9">Apply Policy</text>
+
 <path d="M445 65 L480 65" stroke="#d97706" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="485" y="30" width="120" height="70" rx="10" fill="#111827" stroke="#7c3aed"/><text x="545" y="55" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Decide</text><text x="545" y="75" text-anchor="middle" fill="#94a3b8" font-size="9">Policy Decision</text>
+
+<rect x="485" y="30" width="120" height="70" rx="10" fill="#111827" stroke="#7c3aed"/>
+<text x="545" y="55" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Execute</text>
+<text x="545" y="75" text-anchor="middle" fill="#94a3b8" font-size="9">Run Action</text>
+
 <path d="M605 65 L640 65" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="645" y="30" width="120" height="70" rx="10" fill="#111827" stroke="#e53e3e"/><text x="705" y="55" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Record</text><text x="705" y="75" text-anchor="middle" fill="#94a3b8" font-size="9">Audit Log</text>
+
+<rect x="645" y="30" width="120" height="70" rx="10" fill="#111827" stroke="#e53e3e"/>
+<text x="705" y="55" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="600">Record</text>
+<text x="705" y="75" text-anchor="middle" fill="#94a3b8" font-size="9">Audit Trail</text>
+
 </svg>
 
 <h3 class="mt-2 mb-1">AARM Decision Outcomes</h3>
+
 <div class="grid-2">
-<div class="card"><h4 class="accent-green mb-1">ALLOW</h4><p class="fs-small text-muted">Request passes all policy checks. No risk indicators detected. Full execution permitted with standard logging.</p></div>
-<div class="card"><h4 class="accent-red mb-1">DENY</h4><p class="fs-small text-muted">Request violates critical policy. Blocked immediately. Alert generated. Requires security review before any similar request can proceed.</p></div>
-<div class="card"><h4 class="accent-amber mb-1">MODIFY</h4><p class="fs-small text-muted">Request partially allowed with modifications. Dangerous parameters sanitized. Scope reduced to acceptable risk level.</p></div>
-<div class="card"><h4 class="accent-blue mb-1">STEP_UP</h4><p class="fs-small text-muted">Request requires additional authentication or authorization. Triggers HITL (Human-in-the-Loop) verification. May require MFA re-authentication.</p></div>
-<div class="card"><h4 class="accent-purple mb-1">DEFER</h4><p class="fs-small text-muted">Request placed in quarantine for analysis. Delayed execution pending security review. Used for anomalous but not clearly malicious requests.</p></div>
+
+<div class="card">
+    <h4 class="accent-green mb-1">ALLOW</h4>
+    <p class="fs-small text-muted">
+        Action complies with all policies and risk checks. Execution proceeds with standard monitoring and audit logging.
+    </p>
 </div>
 
-<h3 class="mt-2 mb-1">AARM Conformance Levels</h3>
+<div class="card">
+    <h4 class="accent-red mb-1">DENY</h4>
+    <p class="fs-small text-muted">
+        Action violates security policies or exceeds acceptable risk. Execution is blocked and an audit event is generated.
+    </p>
+</div>
+
+<div class="card">
+    <h4 class="accent-amber mb-1">MASK</h4>
+    <p class="fs-small text-muted">
+        Sensitive information is automatically redacted or sanitized before the action or response is completed, preventing data exposure.
+    </p>
+</div>
+
+<div class="card">
+    <h4 class="accent-blue mb-1">APPROVE</h4>
+    <p class="fs-small text-muted">
+        Action requires Human-in-the-Loop (HITL) approval before execution due to elevated risk, sensitive data, or privileged operations.
+    </p>
+</div>
+
+</div>
+
+<h3 class="mt-2 mb-1">AARM Implementation Maturity Levels</h3>
 <div style="overflow-x:auto"><table>
 <thead><tr><th>Level</th><th>Name</th><th>Description</th><th>Use Case</th></tr></thead>
 <tbody>
-<tr><td>C1</td><td>Observation</td><td>Monitor and log only. No enforcement.</td><td>Development, testing, monitoring</td></tr>
-<tr><td>C2</td><td>Advisory</td><td>Warn on violations but allow execution.</td><td>Staging, gradual rollout</td></tr>
-<tr><td>C3</td><td>Enforcement</td><td>Block violations, allow safe requests.</td><td>Production (standard)</td></tr>
-<tr><td>C4</td><td>Hardened</td><td>Strict enforcement with automatic incident response.</td><td>Production (high-security)</td></tr>
-<tr><td>C5</td><td>Air-Gapped</td><td>All AI actions require human approval.</td><td>Critical infrastructure, regulated</td></tr>
+<tr>
+<td>C1</td>
+<td>Observation</td>
+<td>Monitor and audit AI actions without enforcement.</td>
+<td>Development, testing</td>
+</tr>
+
+<tr>
+<td>C2</td>
+<td>Advisory</td>
+<td>Detect policy violations and generate alerts while allowing execution.</td>
+<td>Staging, pilot deployments</td>
+</tr>
+
+<tr>
+<td>C3</td>
+<td>Enforcement</td>
+<td>Apply runtime policies to block or allow AI actions automatically.</td>
+<td>Standard production</td>
+</tr>
+
+<tr>
+<td>C4</td>
+<td>Hardened</td>
+<td>Strict policy enforcement with automated incident response and continuous monitoring.</td>
+<td>High-security production</td>
+</tr>
+
+<tr>
+<td>C5</td>
+<td>Air-Gapped</td>
+<td>All high-risk AI actions require explicit Human-in-the-Loop approval.</td>
+<td>Critical infrastructure, regulated environments</td>
+</tr>
 </tbody>
 </table></div>
 
 <h3 class="mt-2 mb-1">AARM Decision Engine Internals</h3>
-<div class="card mb-1"><p class="fs-small text-muted">The AARM decision engine evaluates each AI action against a configurable policy set. Policies are defined as rules combining conditions (who, what, when, where, how) with outcomes (ALLOW, DENY, MODIFY, STEP_UP, DEFER). The engine uses a cascading evaluation model: rules are evaluated in priority order, and the first matching rule determines the outcome. If no rule matches, the default policy (typically DENY for high-security or ALLOW for low-security) is applied.</p>
-<p class="fs-small text-muted mt-1"><strong>Policy Example:</strong> IF action=send_email AND recipient_domain=external AND data_classification=PII THEN outcome=STEP_UP (requires manager approval). IF action=delete_record AND confidence&lt;0.8 THEN outcome=DENY.</p></div>
+
+<div class="card mb-1">
+<p class="fs-small text-muted">
+The AARM decision engine evaluates every AI action against configurable security policies. Policies combine conditions such as user identity, requested action, execution context, data sensitivity, and risk score with runtime decisions (ALLOW, DENY, MASK, or APPROVE). Rules are evaluated in priority order, and the first matching rule determines the outcome. If no rule matches, the default policy is applied according to the organization's security posture.
+</p>
+
+<p class="fs-small text-muted mt-1">
+<strong>Policy Example:</strong>
+IF action=send_email AND recipient_domain=external AND data_classification=PII THEN outcome=APPROVE (Human-in-the-Loop). IF output contains sensitive data THEN outcome=MASK. IF action=delete_record AND risk=high THEN outcome=DENY.
+</p>
+</div>
 
 <h3 class="mt-2 mb-1">AARM Implementation Architectures</h3>
+
 <div class="grid-3">
-<div class="card"><h4 class="accent-blue mb-1">Sidecar Proxy</h4><p class="fs-small text-muted">Deployed as a sidecar container alongside the LLM service. Intercepts all API calls between the application and LLM. Non-invasive deployment — no application code changes required. Commonly used in Kubernetes environments. <strong>Pros:</strong> Non-invasive, easy to deploy, language-agnostic. <strong>Cons:</strong> May add latency, requires service mesh infrastructure. <strong>Use case:</strong> Kuberentes-native deployments with Istio/Linkerd.</p></div>
-<div class="card"><h4 class="accent-teal mb-1">Gateway Middleware</h4><p class="fs-small text-muted">Integrated into the AI Gateway (e.g., Kong, Envoy, Azure API Management). Policy evaluation at the gateway level before requests reach the LLM. Centralized policy management across multiple AI services. Supports request/response transformation. <strong>Pros:</strong> Centralized control, consistent policies, good observability. <strong>Cons:</strong> Requires gateway infrastructure, potential bottleneck. <strong>Use case:</strong> Multi-model deployments, enterprise API management.</p></div>
-<div class="card"><h4 class="accent-purple mb-1">Embedded SDK</h4><p class="fs-small text-muted">AARM logic embedded directly in the application code via SDK/library. Deepest integration with application context. Lowest latency as no network hop. Can access application-level context for policy decisions. <strong>Pros:</strong> Deep integration, low latency, access to rich context. <strong>Cons:</strong> Application-specific, requires code changes, language-dependent. <strong>Use case:</strong> Custom applications, high-performance requirements.</p></div>
+
+<div class="card">
+<h4 class="accent-blue mb-1">Sidecar Proxy</h4>
+<p class="fs-small text-muted">
+Deploys alongside the AI service to intercept runtime requests without modifying application code.<br>
+<strong>Pros:</strong> Easy deployment, language-agnostic, centralized enforcement.<br> 
+<strong>Cons:</strong> Additional network hop and service mesh dependency.<br> 
+<strong>Use case:</strong> Kubernetes environments using Istio or Linkerd.
+</p>
+</div>
+
+<div class="card">
+<h4 class="accent-teal mb-1">Gateway Middleware</h4>
+<p class="fs-small text-muted">
+Integrates runtime policy enforcement into an AI Gateway (e.g., Kong, Envoy, Azure API Management).<br> <strong>Pros:</strong> Centralized governance, consistent policy enforcement, strong observability.<br> <strong>Cons:</strong> Requires gateway infrastructure and may become a bottleneck.<br> <strong>Use case:</strong> Enterprise AI platforms serving multiple models and applications.
+</p>
+</div>
+
+<div class="card">
+<h4 class="accent-purple mb-1">Embedded SDK</h4>
+<p class="fs-small text-muted">
+Implements AARM directly within the application using an SDK, enabling low-latency runtime decisions with full application context.<br> <strong>Pros:</strong> High performance, deep integration, rich contextual awareness.<br> <strong>Cons:</strong> Requires application changes and language-specific implementations.<br> <strong>Use case:</strong> Custom AI applications requiring fine-grained runtime governance.
+</p>
+</div>
+
 </div>
 
 <h3 class="mt-2 mb-1">AARM Policy Examples</h3>
-<div style="overflow-x:auto"><table>
-<thead><tr><th>Policy ID</th><th>Condition</th><th>Outcome</th><th>Rationale</th></tr></thead>
+
+<div style="overflow-x:auto">
+<table>
+
+<thead>
+<tr>
+<th>Policy ID</th>
+<th>Condition</th>
+<th>Outcome</th>
+<th>Rationale</th>
+</tr>
+</thead>
+
 <tbody>
-<tr><td>P-001</td><td>Prompt contains "ignore previous instructions"</td><td>DENY</td><td>Classic prompt injection pattern</td></tr>
-<tr><td>P-002</td><td>Tool call to database with SELECT * FROM users</td><td>STEP_UP</td><td>Data exfiltration attempt — requires human approval</td></tr>
-<tr><td>P-003</td><td>Context utilization &gt; 85% + model requested</td><td>MODIFY (truncate low-priority context)</td><td>Potential TOMA attack — reclaim context space</td></tr>
-<tr><td>P-004</td><td>Output contains regex match for PII patterns</td><td>MODIFY (redact PII before returning)</td><td>Prevent data leakage through model output</td></tr>
-<tr><td>P-005</td><td>Same user &gt; 100 requests in 1 minute</td><td>DEFER (queue with 10s delay)</td><td>Rate limiting — potential abuse or automated attack</td></tr>
+
+<tr>
+<td>P-001</td>
+<td>Prompt contains "ignore previous instructions"</td>
+<td>DENY</td>
+<td>Blocks classic prompt injection attempts.</td>
+</tr>
+
+<tr>
+<td>P-002</td>
+<td>Tool call accesses sensitive customer data</td>
+<td>APPROVE</td>
+<td>Requires Human-in-the-Loop approval before execution.</td>
+</tr>
+
+<tr>
+<td>P-003</td>
+<td>Output contains PII or confidential information</td>
+<td>MASK</td>
+<td>Redacts sensitive information before returning the response.</td>
+</tr>
+
+<tr>
+<td>P-004</td>
+<td>Action complies with all security policies and risk checks</td>
+<td>ALLOW</td>
+<td>Permits execution with standard monitoring and audit logging.</td>
+</tr>
+
+<tr>
+<td>P-005</td>
+<td>Delete operation on production resources without authorization</td>
+<td>DENY</td>
+<td>Prevents unauthorized or high-risk destructive actions.</td>
+</tr>
+
 </tbody>
-</table></div>
-</div></section>
+
+</table>
+</div>
+
+</div>
+</section>
 
 <div class="section-divider"></div>
 
@@ -1450,7 +1609,12 @@ Based on the MITRE ATT&CK framework, ATLAS provides a knowledge base of adversar
 <p class="text-muted mb-1">Key terms and definitions used throughout this guide. Understanding these terms is essential for effective communication about AI security risks and defenses.</p>
 
 <div class="grid-2">
-<div class="card"><h4 class="accent-blue mb-1">AARM</h4><p class="fs-small text-muted">Agentic AI Risk Model. A runtime security framework that Intercepts, Accumulates context, Evaluates risk, Decides on policy, and Records actions. Provides structured risk-based enforcement for AI agent actions.</p></div>
+<div class="card">
+    <h4 class="accent-blue mb-1">AARM</h4>
+    <p class="fs-small text-muted">
+        <strong>Autonomous Action Runtime Management.</strong> A runtime security framework for autonomous AI agents that intercepts actions, evaluates intent, context and risk, enforces security policies before execution, executes only authorized actions, and records every decision in a tamper-evident audit trail.
+    </p>
+</div>
 <div class="card"><h4 class="accent-teal mb-1">Alignment</h4><p class="fs-small text-muted">The process of ensuring AI systems behave in accordance with human values, intentions, and safety requirements. Techniques include RLHF (Reinforcement Learning from Human Feedback) and Constitutional AI.</p></div>
 <div class="card"><h4 class="accent-amber mb-1">ASR (Attack Success Rate)</h4><p class="fs-small text-muted">The percentage of attack attempts that successfully achieve their objective. Used as a key metric in AI red teaming and security evaluation. The PoisonedRAG study achieved 90% ASR with only 5 poisoned documents.</p></div>
 <div class="card"><h4 class="accent-purple mb-1">Context Window</h4><p class="fs-small text-muted">The fixed-size working memory of an LLM. Contains the system prompt, user input, retrieved documents, conversation history, and tool outputs. The limited size creates opportunities for TOMA (Token Overflow Attack).</p></div>
